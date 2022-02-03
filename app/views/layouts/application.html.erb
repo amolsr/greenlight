@@ -28,8 +28,8 @@
       </script>
     <% end %>
 
-    <title><%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %></title>
-    <meta property="og:title" content="<%= yield(:page_title).present? ? yield(:page_title) : t("bigbluebutton") %>" />
+    <title><%= yield(:page_title).present? ? yield(:page_title) : t("chalkmates") %></title>
+    <meta property="og:title" content="<%= yield(:page_title).present? ? yield(:page_title) : t("chalkmates") %>" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content=<%=user_locale(@room&.owner)%> />
     <meta property="og:description" content="<%= yield(:page_desc).present? ? yield(:page_desc) : t("landing.about", href: "Greenlight", locale: :en) %>" />
@@ -44,6 +44,9 @@
       window.GreenLight.WEBSOCKET_HOST = "<%= ENV['WEBSOCKET_HOST'] %>"
       window.GreenLight.RELATIVE_ROOT = "<%= relative_root %>"
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -59,6 +62,12 @@
       window.I18n = <%= current_translations.to_json.html_safe %>
       window.I18nFallback = <%= fallback_translations.to_json.html_safe %>
     </script>
+    <style>
+      .btn { border-radius: 25px;}
+      *{font-family: 'Montserrat', sans-serif;}
+      .form-control { border-radius: 25px !important;}
+      input#search-input, input#branding-url, input#legal-url, input#privpolicy-url, input#maintenance-banner, input#email-mapping { border-radius: 0 !important;}
+    </style>
   </head>
 
   <body class="app-background" data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">
